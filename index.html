@@ -982,8 +982,10 @@
       '総務・人事・経理', '清掃・食堂業務', '構内物流・搬送'
     ];
 
+    const DEFAULT_API_KEY = 'AIzaSyDCQptzd1RPMDFrnd7SR5pTMLB0EC23aoc';
+
     function getApiKey() {
-      return localStorage.getItem('gemini_api_key') || '';
+      return localStorage.getItem('gemini_api_key') || DEFAULT_API_KEY;
     }
 
     function showApiKeyModal() {
