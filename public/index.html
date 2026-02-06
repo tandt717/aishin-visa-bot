@@ -22,7 +22,7 @@
       height: 100%;
     }
 
-    .chat-page {
+    .app-container {
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -30,18 +30,18 @@
     }
 
     /* ===== HEADER ===== */
-    .chat-header {
+    .app-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 28px;
+      padding: 14px 28px;
       background: rgba(255,255,255,0.04);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .chat-header-left {
+    .header-left {
       display: flex;
       align-items: center;
       gap: 14px;
@@ -59,41 +59,66 @@
       box-shadow: 0 4px 16px rgba(102,126,234,0.3);
     }
 
-    .chat-header-left h1 {
+    .header-left h1 {
       color: #fff;
       font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: 0.02em;
     }
 
-    .chat-header-left p {
+    .header-left p {
       color: rgba(255,255,255,0.4);
       font-size: 0.72rem;
       margin-top: 1px;
     }
 
-    .chat-header-btns {
+    /* ===== TAB NAV ===== */
+    .tab-nav {
       display: flex;
-      gap: 8px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 28px;
     }
 
-    .chat-reset-btn {
-      padding: 7px 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.6);
-      font-size: 0.78rem;
+    .tab-btn {
+      padding: 12px 24px;
+      border: none;
+      background: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+      position: relative;
     }
 
-    .chat-reset-btn:hover {
-      background: rgba(255,255,255,0.1);
+    .tab-btn:hover {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .tab-btn.active {
+      color: #a0b4ff;
+      border-bottom-color: #667eea;
+    }
+
+    .tab-btn .tab-badge {
+      display: inline-block;
+      background: #e74c3c;
       color: #fff;
+      font-size: 0.65rem;
+      padding: 1px 6px;
+      border-radius: 10px;
+      margin-left: 6px;
+      font-weight: 700;
+      vertical-align: middle;
     }
 
-    /* ===== CHAT MESSAGES ===== */
+    /* ===== PAGE CONTAINERS ===== */
+    .page { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+    .page.active { display: flex; }
+
+    /* ===== CHAT PAGE ===== */
     .chat-messages {
       flex: 1;
       overflow-y: auto;
@@ -174,7 +199,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* ===== INPUT AREA ===== */
     .chat-input-area {
       display: flex;
       gap: 10px;
@@ -232,7 +256,6 @@
       letter-spacing: 0.01em;
     }
 
-    /* ===== THINKING ===== */
     .thinking-indicator {
       display: flex;
       align-items: center;
@@ -266,46 +289,450 @@
       40% { opacity: 1; }
     }
 
+    /* ===== DASHBOARD PAGE ===== */
+    .dashboard {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 28px;
+    }
+
+    .dashboard::-webkit-scrollbar { width: 6px; }
+    .dashboard::-webkit-scrollbar-track { background: transparent; }
+    .dashboard::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .dash-header h2 {
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .dash-header p {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.78rem;
+      margin-top: 4px;
+    }
+
+    .dash-refresh-btn {
+      padding: 8px 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.6);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dash-refresh-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .dash-refresh-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .dash-summary {
+      padding: 14px 20px;
+      background: rgba(102,126,234,0.1);
+      border: 1px solid rgba(102,126,234,0.2);
+      border-radius: 12px;
+      color: #a0b4ff;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .dash-source-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .dash-filter-btn {
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dash-filter-btn.active {
+      background: rgba(102,126,234,0.2);
+      border-color: rgba(102,126,234,0.5);
+      color: #a0b4ff;
+    }
+
+    .dash-filter-btn:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+
+    .news-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+      animation: fadeIn 0.3s ease;
+      cursor: pointer;
+    }
+
+    .news-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(102,126,234,0.3);
+      transform: translateY(-1px);
+    }
+
+    .news-card-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .news-source-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .news-source-tag.mhlw {
+      background: rgba(46,204,113,0.15);
+      color: #2ecc71;
+      border: 1px solid rgba(46,204,113,0.3);
+    }
+
+    .news-source-tag.isa {
+      background: rgba(52,152,219,0.15);
+      color: #3498db;
+      border: 1px solid rgba(52,152,219,0.3);
+    }
+
+    .news-source-tag.moj {
+      background: rgba(155,89,182,0.15);
+      color: #9b59b6;
+      border: 1px solid rgba(155,89,182,0.3);
+    }
+
+    .news-category-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .news-relevance-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .news-relevance-tag.high {
+      background: rgba(231,76,60,0.15);
+      color: #e74c3c;
+      border: 1px solid rgba(231,76,60,0.3);
+    }
+
+    .news-relevance-tag.medium {
+      background: rgba(243,156,18,0.15);
+      color: #f39c12;
+      border: 1px solid rgba(243,156,18,0.3);
+    }
+
+    .news-date {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      margin-left: auto;
+    }
+
+    .news-title {
+      font-size: 0.92rem;
+      color: #fff;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .news-summary {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    .news-link-hint {
+      font-size: 0.72rem;
+      color: rgba(102,126,234,0.6);
+      margin-top: 8px;
+    }
+
+    /* ===== LOADING ===== */
+    .dash-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 16px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .dash-loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .dash-loading p {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+    }
+
+    .dash-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+    }
+
+    .dash-error {
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(231,76,60,0.7);
+      font-size: 0.85rem;
+    }
+
+    .dash-disclaimer {
+      padding: 10px 28px;
+      background: rgba(0,0,0,0.3);
+      color: rgba(255,255,255,0.25);
+      font-size: 0.68rem;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
     /* ===== MOBILE ===== */
     @media (max-width: 600px) {
       .chat-bubble { max-width: 95%; font-size: 0.85rem; }
-      .chat-header { padding: 12px 16px; }
+      .app-header { padding: 12px 16px; }
+      .tab-nav { padding: 0 16px; }
+      .tab-btn { padding: 10px 16px; font-size: 0.8rem; }
       .chat-messages { padding: 12px 14px; }
       .chat-input-area { padding: 10px 14px; }
       .chat-send-btn { padding: 14px 18px; font-size: 0.85rem; }
       .header-icon { width: 34px; height: 34px; font-size: 1rem; }
       .chat-options { gap: 6px; }
       .chat-option-btn { padding: 6px 12px; font-size: 0.75rem; }
-      .chat-disclaimer { padding: 8px 14px; }
+      .chat-disclaimer, .dash-disclaimer { padding: 8px 14px; }
+      .dashboard { padding: 16px 14px; }
+      .news-card { padding: 14px 16px; }
+      .news-date { margin-left: 0; width: 100%; margin-top: 4px; }
+      .dash-header { flex-direction: column; align-items: flex-start; gap: 10px; }
     }
   </style>
 </head>
 <body>
-  <div class="chat-page">
-    <div class="chat-header">
-      <div class="chat-header-left">
+  <div class="app-container">
+    <!-- Header -->
+    <div class="app-header">
+      <div class="header-left">
         <div class="header-icon">&#9998;</div>
         <div>
           <h1>大森サポートツール</h1>
-          <p>在留資格・就労相談ボット</p>
+          <p>在留資格・就労相談 / 官公庁ニュース</p>
         </div>
       </div>
-      <div class="chat-header-btns">
-        <button class="chat-reset-btn" onclick="resetChat()">リセット</button>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('chat')" id="tabChat">&#128172; チャット相談</button>
+      <button class="tab-btn" onclick="switchTab('dashboard')" id="tabDash">&#128240; ニュース<span class="tab-badge" id="newsBadge" style="display:none;">0</span></button>
+    </div>
+
+    <!-- Chat Page -->
+    <div class="page active" id="pageChat">
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="質問を入力してください..." />
+        <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">送信</button>
+      </div>
+      <div class="chat-disclaimer">
+        ※ 出入国在留管理庁・厚生労働省・法務省の公的情報に基づくAI回答です。最終判断は管轄の地方出入国在留管理局にご確認ください。
       </div>
     </div>
-    <div class="chat-messages" id="chatMessages"></div>
-    <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="質問を入力してください..." />
-      <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">送信</button>
-    </div>
-    <div class="chat-disclaimer">
-      ※ 出入国在留管理庁・厚生労働省・法務省の公的情報に基づくAI回答です。最終判断は管轄の地方出入国在留管理局にご確認ください。
+
+    <!-- Dashboard Page -->
+    <div class="page" id="pageDash">
+      <div class="dashboard" id="dashboardContent">
+        <div class="dash-header">
+          <div>
+            <h2>官公庁ニュース</h2>
+            <p>出入国在留管理庁・厚生労働省・法務省の最新情報</p>
+          </div>
+          <button class="dash-refresh-btn" id="dashRefreshBtn" onclick="loadNews()">更新</button>
+        </div>
+        <div class="dash-source-filters" id="sourceFilters">
+          <button class="dash-filter-btn active" onclick="filterNews('all')" data-filter="all">すべて</button>
+          <button class="dash-filter-btn" onclick="filterNews('出入国在留管理庁')" data-filter="出入国在留管理庁">出入国在留管理庁</button>
+          <button class="dash-filter-btn" onclick="filterNews('厚生労働省')" data-filter="厚生労働省">厚生労働省</button>
+          <button class="dash-filter-btn" onclick="filterNews('法務省')" data-filter="法務省">法務省</button>
+        </div>
+        <div id="newsArea">
+          <div class="dash-empty">タブを選択するとニュースを読み込みます</div>
+        </div>
+      </div>
+      <div class="dash-disclaimer">
+        ※ 各省庁の公式サイトから取得した情報をAIが要約しています。正確な内容は各省庁の公式サイトでご確認ください。
+      </div>
     </div>
   </div>
 
   <script>
-    // ===== CONFIG =====
+    // ===== TAB NAVIGATION =====
+    let currentTab = 'chat';
+    let newsLoaded = false;
+    let newsData = null;
+    let currentFilter = 'all';
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+      if (tab === 'chat') {
+        document.getElementById('tabChat').classList.add('active');
+        document.getElementById('pageChat').classList.add('active');
+      } else {
+        document.getElementById('tabDash').classList.add('active');
+        document.getElementById('pageDash').classList.add('active');
+        if (!newsLoaded) loadNews();
+      }
+    }
+
+    // ===== DASHBOARD =====
+    async function loadNews() {
+      const area = document.getElementById('newsArea');
+      const btn = document.getElementById('dashRefreshBtn');
+      btn.disabled = true;
+      btn.textContent = '読み込み中...';
+
+      area.innerHTML = `
+        <div class="dash-loading">
+          <div class="dash-loading-spinner"></div>
+          <p>省庁サイトからニュースを取得中...</p>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.25);">AIが関連記事をフィルタリングしています</p>
+        </div>`;
+
+      try {
+        const res = await fetch('/api/news');
+        if (!res.ok) throw new Error('API error');
+        newsData = await res.json();
+        newsLoaded = true;
+        renderNews();
+
+        // バッジ更新
+        const badge = document.getElementById('newsBadge');
+        if (newsData.articles && newsData.articles.length > 0) {
+          badge.textContent = newsData.articles.length;
+          badge.style.display = 'inline-block';
+        }
+      } catch (err) {
+        area.innerHTML = `
+          <div class="dash-error">
+            <p>ニュースの取得に失敗しました。</p>
+            <p style="margin-top:8px;font-size:0.78rem;color:rgba(255,255,255,0.3);">しばらく待ってから「更新」ボタンを押してください。</p>
+          </div>`;
+      }
+
+      btn.disabled = false;
+      btn.textContent = '更新';
+    }
+
+    function renderNews() {
+      const area = document.getElementById('newsArea');
+      if (!newsData || !newsData.articles || newsData.articles.length === 0) {
+        area.innerHTML = '<div class="dash-empty">関連するニュースが見つかりませんでした。</div>';
+        return;
+      }
+
+      const filtered = currentFilter === 'all'
+        ? newsData.articles
+        : newsData.articles.filter(a => a.source === currentFilter);
+
+      if (filtered.length === 0) {
+        area.innerHTML = '<div class="dash-empty">この省庁の関連ニュースはありません。</div>';
+        return;
+      }
+
+      let html = '';
+      if (newsData.summary) {
+        html += `<div class="dash-summary">${escapeHtml(newsData.summary)}</div>`;
+      }
+
+      for (const article of filtered) {
+        const sourceClass = article.source === '厚生労働省' ? 'mhlw'
+          : article.source === '出入国在留管理庁' ? 'isa' : 'moj';
+        const relevanceClass = article.relevance || 'medium';
+
+        html += `
+          <div class="news-card" onclick="openArticle('${escapeAttr(article.link || '')}')">
+            <div class="news-card-top">
+              <span class="news-source-tag ${sourceClass}">${escapeHtml(article.source)}</span>
+              ${article.category ? `<span class="news-category-tag">${escapeHtml(article.category)}</span>` : ''}
+              ${article.relevance ? `<span class="news-relevance-tag ${relevanceClass}">${relevanceClass === 'high' ? '重要' : '関連'}</span>` : ''}
+              ${article.date ? `<span class="news-date">${escapeHtml(article.date)}</span>` : ''}
+            </div>
+            <div class="news-title">${escapeHtml(article.title)}</div>
+            ${article.summary ? `<div class="news-summary">${escapeHtml(article.summary)}</div>` : ''}
+            ${article.link ? '<div class="news-link-hint">クリックで公式サイトを開く &rarr;</div>' : ''}
+          </div>`;
+      }
+
+      area.innerHTML = html;
+    }
+
+    function filterNews(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.dash-filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === filter);
+      });
+      if (newsData) renderNews();
+    }
+
+    function openArticle(url) {
+      if (url) window.open(url, '_blank', 'noopener');
+    }
+
+    // ===== CHAT CONFIG =====
     let conversationHistory = [];
     let isSending = false;
 
@@ -465,7 +892,6 @@
     }
 
     function resetChat() { initChat(); }
-
     function selectVisa(status) { sendUserMessage(status); }
     function selectWork(work) { sendUserMessage(work); }
 
@@ -619,6 +1045,10 @@
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
+    }
+
+    function escapeAttr(text) {
+      return text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
     }
 
     // Start
