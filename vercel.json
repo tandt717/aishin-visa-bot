@@ -1,6 +1,10 @@
 {
   "rewrites": [
     { "source": "/api/chat", "destination": "/api/chat" },
-    { "source": "/api/news", "destination": "/api/news" }
+    { "source": "/api/news", "destination": "/api/news" },
+    { "source": "/api/fetch-news", "destination": "/api/fetch-news" }
+  ],
+  "crons": [
+    { "path": "/api/fetch-news", "schedule": "0 9 * * *" }
   ]
 }

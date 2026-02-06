@@ -34,7 +34,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 28px;
+      padding: 14px 24px;
       background: rgba(255,255,255,0.04);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -61,57 +61,71 @@
 
     .header-left h1 {
       color: #fff;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: 0.02em;
     }
 
     .header-left p {
       color: rgba(255,255,255,0.4);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       margin-top: 1px;
     }
 
     /* ===== TAB NAV ===== */
     .tab-nav {
       display: flex;
-      background: rgba(255,255,255,0.03);
+      gap: 10px;
+      padding: 12px 24px;
+      background: rgba(0,0,0,0.2);
       border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 0 28px;
     }
 
     .tab-btn {
-      padding: 12px 24px;
-      border: none;
-      background: none;
-      color: rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.45);
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
-      border-bottom: 2px solid transparent;
-      position: relative;
+      transition: all 0.25s;
     }
 
     .tab-btn:hover {
+      background: rgba(255,255,255,0.08);
       color: rgba(255,255,255,0.7);
+      border-color: rgba(255,255,255,0.15);
     }
 
     .tab-btn.active {
-      color: #a0b4ff;
-      border-bottom-color: #667eea;
+      background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(118,75,162,0.25));
+      border-color: rgba(102,126,234,0.5);
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(102,126,234,0.2);
     }
 
-    .tab-btn .tab-badge {
-      display: inline-block;
+    .tab-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .tab-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
       background: #e74c3c;
       color: #fff;
       font-size: 0.65rem;
-      padding: 1px 6px;
+      padding: 0 5px;
       border-radius: 10px;
-      margin-left: 6px;
       font-weight: 700;
-      vertical-align: middle;
     }
 
     /* ===== PAGE CONTAINERS ===== */
@@ -300,78 +314,107 @@
     .dashboard::-webkit-scrollbar-track { background: transparent; }
     .dashboard::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
-    .dash-header {
+    .dash-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .dash-header h2 {
-      font-size: 1.1rem;
+    .dash-toolbar-left h2 {
+      font-size: 1.05rem;
       color: #fff;
       font-weight: 700;
     }
 
-    .dash-header p {
-      color: rgba(255,255,255,0.4);
-      font-size: 0.78rem;
+    .dash-toolbar-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       margin-top: 4px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.72rem;
     }
 
-    .dash-refresh-btn {
-      padding: 8px 18px;
+    .dash-toolbar-meta .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .dash-toolbar-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dash-btn {
+      padding: 8px 16px;
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
+      border-radius: 10px;
       background: rgba(255,255,255,0.06);
       color: rgba(255,255,255,0.6);
       font-size: 0.78rem;
       cursor: pointer;
       transition: all 0.2s;
+      font-weight: 500;
     }
 
-    .dash-refresh-btn:hover {
+    .dash-btn:hover {
       background: rgba(255,255,255,0.1);
       color: #fff;
     }
 
-    .dash-refresh-btn:disabled {
+    .dash-btn:disabled {
       opacity: 0.4;
       cursor: not-allowed;
     }
 
+    .dash-btn-primary {
+      background: linear-gradient(135deg, rgba(102,126,234,0.3), rgba(118,75,162,0.3));
+      border-color: rgba(102,126,234,0.4);
+      color: #a0b4ff;
+    }
+
+    .dash-btn-primary:hover {
+      background: linear-gradient(135deg, rgba(102,126,234,0.5), rgba(118,75,162,0.5));
+      color: #fff;
+    }
+
     .dash-summary {
       padding: 14px 20px;
-      background: rgba(102,126,234,0.1);
-      border: 1px solid rgba(102,126,234,0.2);
+      background: rgba(102,126,234,0.08);
+      border: 1px solid rgba(102,126,234,0.15);
       border-radius: 12px;
       color: #a0b4ff;
-      font-size: 0.85rem;
-      margin-bottom: 20px;
+      font-size: 0.82rem;
+      margin-bottom: 16px;
       animation: fadeIn 0.3s ease;
     }
 
     .dash-source-filters {
       display: flex;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       flex-wrap: wrap;
     }
 
     .dash-filter-btn {
       padding: 6px 14px;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.45);
       font-size: 0.75rem;
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .dash-filter-btn.active {
-      background: rgba(102,126,234,0.2);
-      border-color: rgba(102,126,234,0.5);
+      background: rgba(102,126,234,0.15);
+      border-color: rgba(102,126,234,0.4);
       color: #a0b4ff;
     }
 
@@ -381,19 +424,19 @@
     }
 
     .news-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 14px;
-      padding: 18px 20px;
-      margin-bottom: 12px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
       transition: all 0.2s;
       animation: fadeIn 0.3s ease;
       cursor: pointer;
     }
 
     .news-card:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(102,126,234,0.3);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(102,126,234,0.25);
       transform: translateY(-1px);
     }
 
@@ -409,66 +452,66 @@
       display: inline-block;
       padding: 2px 10px;
       border-radius: 8px;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
     }
 
     .news-source-tag.mhlw {
-      background: rgba(46,204,113,0.15);
+      background: rgba(46,204,113,0.12);
       color: #2ecc71;
-      border: 1px solid rgba(46,204,113,0.3);
+      border: 1px solid rgba(46,204,113,0.25);
     }
 
     .news-source-tag.isa {
-      background: rgba(52,152,219,0.15);
+      background: rgba(52,152,219,0.12);
       color: #3498db;
-      border: 1px solid rgba(52,152,219,0.3);
+      border: 1px solid rgba(52,152,219,0.25);
     }
 
     .news-source-tag.moj {
-      background: rgba(155,89,182,0.15);
+      background: rgba(155,89,182,0.12);
       color: #9b59b6;
-      border: 1px solid rgba(155,89,182,0.3);
+      border: 1px solid rgba(155,89,182,0.25);
     }
 
     .news-category-tag {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 6px;
-      font-size: 0.68rem;
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.5);
-      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.66rem;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .news-relevance-tag {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 6px;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 700;
     }
 
     .news-relevance-tag.high {
-      background: rgba(231,76,60,0.15);
+      background: rgba(231,76,60,0.12);
       color: #e74c3c;
-      border: 1px solid rgba(231,76,60,0.3);
+      border: 1px solid rgba(231,76,60,0.25);
     }
 
     .news-relevance-tag.medium {
-      background: rgba(243,156,18,0.15);
+      background: rgba(243,156,18,0.12);
       color: #f39c12;
-      border: 1px solid rgba(243,156,18,0.3);
+      border: 1px solid rgba(243,156,18,0.25);
     }
 
     .news-date {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.3);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
       margin-left: auto;
     }
 
     .news-title {
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       color: #fff;
       font-weight: 600;
       line-height: 1.5;
@@ -476,14 +519,14 @@
     }
 
     .news-summary {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.55);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
       line-height: 1.6;
     }
 
     .news-link-hint {
-      font-size: 0.72rem;
-      color: rgba(102,126,234,0.6);
+      font-size: 0.7rem;
+      color: rgba(102,126,234,0.5);
       margin-top: 8px;
     }
 
@@ -499,8 +542,8 @@
     }
 
     .dash-loading-spinner {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border: 3px solid rgba(255,255,255,0.1);
       border-top-color: #667eea;
       border-radius: 50%;
@@ -513,14 +556,20 @@
 
     .dash-loading p {
       color: rgba(255,255,255,0.4);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
 
     .dash-empty {
       text-align: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
       color: rgba(255,255,255,0.3);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+    }
+
+    .dash-empty-sub {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.2);
     }
 
     .dash-error {
@@ -530,7 +579,7 @@
       font-size: 0.85rem;
     }
 
-    .dash-disclaimer {
+    .app-disclaimer {
       padding: 10px 28px;
       background: rgba(0,0,0,0.3);
       color: rgba(255,255,255,0.25);
@@ -542,20 +591,24 @@
     /* ===== MOBILE ===== */
     @media (max-width: 600px) {
       .chat-bubble { max-width: 95%; font-size: 0.85rem; }
-      .app-header { padding: 12px 16px; }
-      .tab-nav { padding: 0 16px; }
-      .tab-btn { padding: 10px 16px; font-size: 0.8rem; }
+      .app-header { padding: 10px 14px; }
+      .tab-nav { padding: 10px 14px; gap: 8px; }
+      .tab-btn { padding: 9px 14px; font-size: 0.78rem; gap: 6px; }
+      .tab-icon { font-size: 1rem; }
       .chat-messages { padding: 12px 14px; }
       .chat-input-area { padding: 10px 14px; }
       .chat-send-btn { padding: 14px 18px; font-size: 0.85rem; }
       .header-icon { width: 34px; height: 34px; font-size: 1rem; }
+      .header-left h1 { font-size: 1rem; }
       .chat-options { gap: 6px; }
       .chat-option-btn { padding: 6px 12px; font-size: 0.75rem; }
-      .chat-disclaimer, .dash-disclaimer { padding: 8px 14px; }
+      .app-disclaimer { padding: 8px 14px; }
       .dashboard { padding: 16px 14px; }
       .news-card { padding: 14px 16px; }
       .news-date { margin-left: 0; width: 100%; margin-top: 4px; }
-      .dash-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .dash-toolbar { flex-direction: column; align-items: flex-start; }
+      .dash-toolbar-btns { width: 100%; }
+      .dash-btn { flex: 1; text-align: center; }
     }
   </style>
 </head>
@@ -574,8 +627,15 @@
 
     <!-- Tab Navigation -->
     <div class="tab-nav">
-      <button class="tab-btn active" onclick="switchTab('chat')" id="tabChat">&#128172; チャット相談</button>
-      <button class="tab-btn" onclick="switchTab('dashboard')" id="tabDash">&#128240; ニュース<span class="tab-badge" id="newsBadge" style="display:none;">0</span></button>
+      <button class="tab-btn active" onclick="switchTab('chat')" id="tabChat">
+        <span class="tab-icon">&#128172;</span>
+        チャット相談
+      </button>
+      <button class="tab-btn" onclick="switchTab('dashboard')" id="tabDash">
+        <span class="tab-icon">&#128240;</span>
+        官公庁ニュース
+        <span class="tab-badge" id="newsBadge" style="display:none;">0</span>
+      </button>
     </div>
 
     <!-- Chat Page -->
@@ -585,7 +645,7 @@
         <input type="text" id="chatInput" placeholder="質問を入力してください..." />
         <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">送信</button>
       </div>
-      <div class="chat-disclaimer">
+      <div class="app-disclaimer">
         ※ 出入国在留管理庁・厚生労働省・法務省の公的情報に基づくAI回答です。最終判断は管轄の地方出入国在留管理局にご確認ください。
       </div>
     </div>
@@ -593,12 +653,21 @@
     <!-- Dashboard Page -->
     <div class="page" id="pageDash">
       <div class="dashboard" id="dashboardContent">
-        <div class="dash-header">
-          <div>
+        <div class="dash-toolbar">
+          <div class="dash-toolbar-left">
             <h2>官公庁ニュース</h2>
-            <p>出入国在留管理庁・厚生労働省・法務省の最新情報</p>
+            <div class="dash-toolbar-meta">
+              <span>出入国在留管理庁・厚生労働省・法務省</span>
+              <span class="dot"></span>
+              <span id="lastUpdatedText">未取得</span>
+            </div>
           </div>
-          <button class="dash-refresh-btn" id="dashRefreshBtn" onclick="loadNews()">更新</button>
+          <div class="dash-toolbar-btns">
+            <button class="dash-btn dash-btn-primary" id="fetchNewsBtn" onclick="triggerFetchNews()">
+              ニュース取得
+            </button>
+            <button class="dash-btn" id="dashRefreshBtn" onclick="loadNews()">表示更新</button>
+          </div>
         </div>
         <div class="dash-source-filters" id="sourceFilters">
           <button class="dash-filter-btn active" onclick="filterNews('all')" data-filter="all">すべて</button>
@@ -607,10 +676,13 @@
           <button class="dash-filter-btn" onclick="filterNews('法務省')" data-filter="法務省">法務省</button>
         </div>
         <div id="newsArea">
-          <div class="dash-empty">タブを選択するとニュースを読み込みます</div>
+          <div class="dash-empty">
+            ニュースがまだ取得されていません。
+            <div class="dash-empty-sub">「ニュース取得」ボタンを押すと、各省庁の最新ニュースをAIがフィルタリングして保存します。</div>
+          </div>
         </div>
       </div>
-      <div class="dash-disclaimer">
+      <div class="app-disclaimer">
         ※ 各省庁の公式サイトから取得した情報をAIが要約しています。正確な内容は各省庁の公式サイトでご確認ください。
       </div>
     </div>
@@ -648,8 +720,7 @@
       area.innerHTML = `
         <div class="dash-loading">
           <div class="dash-loading-spinner"></div>
-          <p>省庁サイトからニュースを取得中...</p>
-          <p style="font-size:0.75rem;color:rgba(255,255,255,0.25);">AIが関連記事をフィルタリングしています</p>
+          <p>データベースからニュースを読み込み中...</p>
         </div>`;
 
       try {
@@ -657,30 +728,78 @@
         if (!res.ok) throw new Error('API error');
         newsData = await res.json();
         newsLoaded = true;
+
+        // 最終更新日時
+        if (newsData.lastUpdated) {
+          const d = new Date(newsData.lastUpdated);
+          document.getElementById('lastUpdatedText').textContent =
+            `最終取得: ${d.getFullYear()}/${(d.getMonth()+1).toString().padStart(2,'0')}/${d.getDate().toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
+        }
+
         renderNews();
 
         // バッジ更新
         const badge = document.getElementById('newsBadge');
         if (newsData.articles && newsData.articles.length > 0) {
-          badge.textContent = newsData.articles.length;
-          badge.style.display = 'inline-block';
+          const highCount = newsData.articles.filter(a => a.relevance === 'high').length;
+          if (highCount > 0) {
+            badge.textContent = highCount;
+            badge.style.display = 'inline-flex';
+          }
         }
       } catch (err) {
         area.innerHTML = `
           <div class="dash-error">
-            <p>ニュースの取得に失敗しました。</p>
-            <p style="margin-top:8px;font-size:0.78rem;color:rgba(255,255,255,0.3);">しばらく待ってから「更新」ボタンを押してください。</p>
+            <p>ニュースの読み込みに失敗しました。</p>
+            <p style="margin-top:8px;font-size:0.78rem;color:rgba(255,255,255,0.3);">データベースが未設定か、接続エラーの可能性があります。</p>
           </div>`;
       }
 
       btn.disabled = false;
-      btn.textContent = '更新';
+      btn.textContent = '表示更新';
+    }
+
+    async function triggerFetchNews() {
+      const btn = document.getElementById('fetchNewsBtn');
+      const area = document.getElementById('newsArea');
+      btn.disabled = true;
+      btn.textContent = '取得中...';
+
+      area.innerHTML = `
+        <div class="dash-loading">
+          <div class="dash-loading-spinner"></div>
+          <p>省庁サイトからニュースを取得中...</p>
+          <p style="font-size:0.72rem;color:rgba(255,255,255,0.2);">AIが関連記事をフィルタリングしてデータベースに保存しています（20〜30秒）</p>
+        </div>`;
+
+      try {
+        const res = await fetch('/api/fetch-news', { method: 'POST' });
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Fetch failed');
+
+        // 完了後にDB読み込み
+        await loadNews();
+      } catch (err) {
+        area.innerHTML = `
+          <div class="dash-error">
+            <p>ニュースの取得に失敗しました。</p>
+            <p style="margin-top:8px;font-size:0.78rem;color:rgba(255,255,255,0.3);">${escapeHtml(err.message || 'しばらく待ってから再度お試しください。')}</p>
+          </div>`;
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'ニュース取得';
     }
 
     function renderNews() {
       const area = document.getElementById('newsArea');
       if (!newsData || !newsData.articles || newsData.articles.length === 0) {
-        area.innerHTML = '<div class="dash-empty">関連するニュースが見つかりませんでした。</div>';
+        area.innerHTML = `
+          <div class="dash-empty">
+            ニュースがまだ取得されていません。
+            <div class="dash-empty-sub">「ニュース取得」ボタンを押すと、各省庁の最新ニュースをAIがフィルタリングして保存します。</div>
+          </div>`;
         return;
       }
 
@@ -702,6 +821,7 @@
         const sourceClass = article.source === '厚生労働省' ? 'mhlw'
           : article.source === '出入国在留管理庁' ? 'isa' : 'moj';
         const relevanceClass = article.relevance || 'medium';
+        const dateStr = article.publish_date || '';
 
         html += `
           <div class="news-card" onclick="openArticle('${escapeAttr(article.link || '')}')">
@@ -709,7 +829,7 @@
               <span class="news-source-tag ${sourceClass}">${escapeHtml(article.source)}</span>
               ${article.category ? `<span class="news-category-tag">${escapeHtml(article.category)}</span>` : ''}
               ${article.relevance ? `<span class="news-relevance-tag ${relevanceClass}">${relevanceClass === 'high' ? '重要' : '関連'}</span>` : ''}
-              ${article.date ? `<span class="news-date">${escapeHtml(article.date)}</span>` : ''}
+              ${dateStr ? `<span class="news-date">${escapeHtml(dateStr)}</span>` : ''}
             </div>
             <div class="news-title">${escapeHtml(article.title)}</div>
             ${article.summary ? `<div class="news-summary">${escapeHtml(article.summary)}</div>` : ''}
