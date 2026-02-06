@@ -306,7 +306,6 @@
 
   <script>
     // ===== CONFIG =====
-    const DEFAULT_API_KEY = 'AIzaSyDCQptzd1RPMDFrnd7SR5pTMLB0EC23aoc';
     let conversationHistory = [];
     let isSending = false;
 
@@ -447,11 +446,6 @@
       '総務・人事・経理', '清掃・食堂業務', '構内物流・搬送'
     ];
 
-    // ===== API =====
-    function getApiKey() {
-      return localStorage.getItem('gemini_api_key') || DEFAULT_API_KEY;
-    }
-
     // ===== CHAT =====
     function initChat() {
       conversationHistory = [];
@@ -563,17 +557,14 @@
       showThinking();
 
       try {
-        const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${getApiKey()}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-              contents: conversationHistory
-            })
-          }
-        );
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+            contents: conversationHistory
+          })
+        });
 
         hideThinking();
 
