@@ -7,11 +7,19 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html, body {
+      overflow-x: hidden;
+      overscroll-behavior: none;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
       background: #0f0f1a;
       min-height: 100vh;
       color: #e0e0e0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
     }
 
     .chat-page {
@@ -215,35 +223,6 @@
       transform: none;
     }
 
-    .chat-mic-btn {
-      padding: 14px 18px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.6);
-      font-size: 1.15rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      line-height: 1;
-    }
-
-    .chat-mic-btn:hover {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-    }
-
-    .chat-mic-btn.recording {
-      background: rgba(231,76,60,0.2);
-      border-color: #e74c3c;
-      color: #e74c3c;
-      animation: pulse 1.2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(231,76,60,0.3); }
-      50% { box-shadow: 0 0 0 12px rgba(231,76,60,0); }
-    }
-
     .chat-disclaimer {
       padding: 10px 28px;
       background: rgba(0,0,0,0.3);
@@ -289,11 +268,15 @@
 
     /* ===== MOBILE ===== */
     @media (max-width: 600px) {
-      .chat-bubble { max-width: 92%; }
+      .chat-bubble { max-width: 95%; font-size: 0.85rem; }
       .chat-header { padding: 12px 16px; }
-      .chat-messages { padding: 16px; }
-      .chat-input-area { padding: 12px 16px; }
+      .chat-messages { padding: 12px 14px; }
+      .chat-input-area { padding: 10px 14px; }
+      .chat-send-btn { padding: 14px 18px; font-size: 0.85rem; }
       .header-icon { width: 34px; height: 34px; font-size: 1rem; }
+      .chat-options { gap: 6px; }
+      .chat-option-btn { padding: 6px 12px; font-size: 0.75rem; }
+      .chat-disclaimer { padding: 8px 14px; }
     }
   </style>
 </head>
@@ -314,7 +297,6 @@
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input-area">
       <input type="text" id="chatInput" placeholder="質問を入力してください..." />
-      <button class="chat-mic-btn" id="micBtn" onclick="toggleVoice()">&#127908;</button>
       <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">送信</button>
     </div>
     <div class="chat-disclaimer">
@@ -646,71 +628,6 @@
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
-    }
-
-    // ===== VOICE INPUT =====
-    let recognition = null;
-    let isRecording = false;
-
-    function toggleVoice() {
-      if (isRecording) {
-        stopVoice();
-      } else {
-        startVoice();
-      }
-    }
-
-    function startVoice() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        addBotMessage('お使いのブラウザは音声入力に対応していません。Chrome をお試しください。');
-        return;
-      }
-
-      recognition = new SpeechRecognition();
-      recognition.lang = 'ja-JP';
-      recognition.interimResults = true;
-      recognition.continuous = false;
-
-      const micBtn = document.getElementById('micBtn');
-      const input = document.getElementById('chatInput');
-
-      recognition.onstart = () => {
-        isRecording = true;
-        micBtn.classList.add('recording');
-        input.placeholder = '音声を聞いています...';
-      };
-
-      recognition.onresult = (e) => {
-        let transcript = '';
-        for (let i = 0; i < e.results.length; i++) {
-          transcript += e.results[i][0].transcript;
-        }
-        input.value = transcript;
-      };
-
-      recognition.onend = () => {
-        isRecording = false;
-        micBtn.classList.remove('recording');
-        input.placeholder = '質問を入力してください...';
-      };
-
-      recognition.onerror = (e) => {
-        isRecording = false;
-        micBtn.classList.remove('recording');
-        input.placeholder = '質問を入力してください...';
-        if (e.error === 'not-allowed') {
-          addBotMessage('マイクの使用が許可されていません。ブラウザの設定を確認してください。');
-        }
-      };
-
-      recognition.start();
-    }
-
-    function stopVoice() {
-      if (recognition) {
-        recognition.stop();
-      }
     }
 
     // Start
